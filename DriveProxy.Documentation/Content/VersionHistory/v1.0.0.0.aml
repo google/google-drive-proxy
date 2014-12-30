@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2014 Google Inc
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<topic id="868fdc3a-baf1-4391-a561-56cc67ea45f8" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+                               xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        Version 1.0.0.0 was released on [TODO: Date].
+      </para>
+    </introduction>
+
+    <section>
+      <title>Changes in This Release</title>
+      <content>
+        <list class="bullet">
+          <listItem>
+            <para>Remove the windows handle from the protocol since it is not used.</para>
+          </listItem>
+          <listItem>
+            <para>Fixing problem with logging system.</para>
+          </listItem>
+          <listItem>
+            <para>We must register the log event to window upon installing.</para>
+          </listItem>
+          <listItem>
+            <para>Uninstalling Drive Proxy should remove auth token.</para>
+          </listItem>
+          <listItem>
+            <para>Cookie file is being written to wrong location.</para>
+          </listItem>
+          <listItem>
+            <para>Make sure that using exit in the tray menu closes the service.</para>
+          </listItem>
+          <listItem>
+            <para>Make sure that we can't start the service twice.</para>
+          </listItem>
+          <listItem>
+            <para>When the user has a change typed as Deleted, crashes driveproxy.</para>
+          </listItem>
+          <listItem>
+            <para> Run white space eater on the project.</para>
+          </listItem>
+          <listItem>
+            <para>The installer should create a start menu with uninstall and a link to start the drive proxy.</para>
+          </listItem>
+          <listItem>
+            <para>Drive proxy installer doesn't set an icon in the  "Programs and feature" for uninstall.</para>
+          </listItem>
+          <listItem>
+            <para>Write installer for Drive Proxy.</para>
+          </listItem>
+          <listItem>
+            <para>Add a settings to start the service upon startup of the computer.</para>
+          </listItem>
+          <listItem>
+            <para>Lots of .Net exceptions just browsing Google Drive path in My Computer.</para>
+          </listItem>
+          <listItem>
+            <para>Signout and Sign-in does not re-prompt for user auth.</para>
+          </listItem>
+          <listItem>
+            <para>Sign out restartes Explorer.</para>
+          </listItem>
+          <listItem>
+            <para>Access token is stored in plain text on disk.</para>
+          </listItem>
+          <listItem>
+            <para>Status window has a minimize and x button but they don't work while you're uploading.</para>
+          </listItem>
+          <listItem>
+            <para>Deleting localappdata files, signing out and then opening my computer crashes the extension.</para>
+          </listItem>
+          <listItem>
+            <para> Write a readme.</para>
+          </listItem>
+          <listItem>
+            <para>Remove commented code.</para>
+          </listItem>
+          <listItem>
+            <para>Centralize product name.</para>
+          </listItem>
+          <listItem>
+            <para>Centralize the version number.</para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="a6026c87-d2ac-43d4-8419-9e5f12ec0657" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

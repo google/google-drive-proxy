@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2014 Google Inc
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<topic id="861aca4f-179d-474a-adc8-b3774f194240" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+                               xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+    </introduction>
+
+    <section>
+      <title>About Drive Proxy</title>
+      <content>
+        <para>
+          Drive Proxy is a Windows Service that streamlines communication with Google
+          Drive. It is meant to facilitate the construction of tools that leverage Google
+          Drive's cloud storage capacity without burdening the hard drive and network with
+          unnecesary local copies. Drive Proxy handles authentication with Google Drive
+          and manages the cache where the needed files reside.
+        </para>
+        <para>
+          It uses a simple protocol to communicate with client applications over a pipe.
+          It is currently used by the DriveFusion project to provide a transparent
+          interface between Windows Explorer and Google Drive.
+        </para>
+      </content>
+    </section>
+    <section>
+      <title>Supported OS</title>
+      <content>
+        <list class="bullet">
+          <listItem>
+            <para>Windows 7 32-bit and 64-bit</para>
+          </listItem>
+          <listItem>
+            <para>Windows 8</para>
+          </listItem>
+          <listItem>
+            <para>Windows Server</para>
+          </listItem>
+          <listItem>
+            <para>Citrix Server</para>
+          </listItem>
+        </list>
+      </content>
+    </section>
+    <relatedTopics>
+      <link xlink:href="a6026c87-d2ac-43d4-8419-9e5f12ec0657" />
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

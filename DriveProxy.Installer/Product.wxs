@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright 2014 Google Inc
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
+  <?include DriveProxyProperties.wxi ?>
+  <Product Id="*" Name="$(var.Product)" Language="1033" Version="$(var.Version)" Manufacturer="$(var.Company)"
+           UpgradeCode="$(var.UpgradeCode)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Media Id="1" Cabinet="DriveProxy.cab" EmbedCab="yes" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <!--<MediaTemplate />-->
+
+    <!-- Properties for all current versions of the .NET Framework are available
+         here: http://wix.sourceforge.net/manual-wix3/wixnetfxextension.htm -->
+    <PropertyRef Id="NETFRAMEWORK40CLIENT" />
+    <Property Id="ARPNOREPAIR" Value="yes" Secure="yes" />
+    <Property Id="ARPNOMODIFY" Value="yes" Secure="yes" />
+    <Condition
+      Message="This application requires .NET Framework 4.0.3. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK40CLIENT]]>
+    </Condition>
+
+    <Icon Id="icon.ico" SourceFile="..\DriveProxy\Images\Folder.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+    <Feature Id="ProductFeature" Title="DriveProxyService" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="ProductImages" />
+      <ComponentGroupRef Id="SourceComponentGroup" />
+      <ComponentRef Id="ApplicationShortcut" />
+    </Feature>
+
+    <Binary Id="DriveProxyCA"
+            SourceFile="..\obj\$(var.Configuration)\DriveProxy.Installer.CustomAction\bin\DriveProxy.Installer.CustomAction.CA.dll" />
+    <Property Id="DriveProxyFolder" Value="$(var.Product)" />
+    <CustomAction Id="CADriveProxyCleanUserData" BinaryKey="DriveProxyCA" DllEntry="CleanUserData" Return="check" />
+    <InstallExecuteSequence>
+      <Custom Action="CADriveProxyCleanUserData" After="InstallInitialize">REMOVE="ALL"</Custom>
+    </InstallExecuteSequence>
+
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyFolder" Name="$(var.CompanyPath)">
+          <Directory Id="INSTALLFOLDER" Name="$(var.Product)">
+            <Directory Id="IMAGESFOLDER" Name="Images"/>
+          </Directory>
+          <Directory Id="ProgramMenuFolder">
+            <Directory Id="ApplicationProgramsFolder" Name="$(var.Product)" />
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="TARGETDIR">
+      <Component Id="RegistryEntries" Guid="*" KeyPath="no">
+        <RegistryKey Root="HKCU" Key="Software\Microsoft\Windows\CurrentVersion\Run">
+          <RegistryValue Name="$(var.Title)" Type="string" Value="[INSTALLFOLDER]\DriveProxy.Service.exe" />
+        </RegistryKey>
+        <!-- registering the event logger.-->
+        <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\services\eventlog\Application\DriveProxy.Service">
+          <RegistryValue Name="EventMessageFile" Type="string" Value="C:\Windows\Microsoft.NET\Framework\v4.0.30319\EventLogMessages.dll" />
+        </RegistryKey>
+      </Component>
+    </ComponentGroup>
+
+    <ComponentGroup Id="ProductImages" Directory="IMAGESFOLDER">
+      <Component Id="DocIcon" Guid="*">
+        <File Id="Doc.ico" Source="..\DriveProxy\Images\Doc.ico" KeyPath="yes"/>
+      </Component>
+      <Component Id="DrawingIcon" Guid="*">
+        <File Id="Drawing.ico" Source="..\DriveProxy\Images\Drawing.ico"/>
+      </Component>
+      <Component Id="FileIcon" Guid="*">
+        <File Id="File.ico" Source="..\DriveProxy\Images\File.ico"/>
+      </Component>
+      <Component Id="FormIcon" Guid="*">
+        <File Id="Form.ico" Source="..\DriveProxy\Images\Form.ico"/>
+      </Component>
+      <Component Id="FusionTablesIcon" Guid="*">
+        <File Id="FusionTables.ico" Source="..\DriveProxy\Images\FusionTables.ico"/>
+      </Component>
+      <Component Id="PresentationIcon" Guid="*">
+        <File Id="Presentation.ico" Source="..\DriveProxy\Images\Presentation.ico"/>
+      </Component>
+      <Component Id="SpreadsheetIcon" Guid="*">
+        <File Id="Spreadsheet.ico" Source="..\DriveProxy\Images\Spreadsheet.ico"/>
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="*">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="$(var.Product)"
+                  Description="$(var.Description)"
+                  Target="[INSTALLFOLDER]\DriveProxy.Service.exe"
+                  WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+        <Shortcut Id="UninstallProduct"
+                  Name="Uninstall $(var.Product)"
+                  Target="[SystemFolder]msiexec.exe"
+                  Arguments="/x [ProductCode]"
+                  Description="Uninstalls $(var.Product)" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\$(var.CompanyPath)\$(var.Product)" Name="installed" Type="integer" Value="1"
+                       KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+</Wix>

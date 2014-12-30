@@ -1,0 +1,52 @@
+        protected static List<File> _ListFiles(Google.Apis.Drive.v2.DriveService service, string parentId)
+        {
+            try
+            {
+                List<File> files = new List<File>();
+
+                Log.Stopwatch stopWatch = new Log.Stopwatch();
+
+                Log.StartPerformance(ref stopWatch, "Begin - Google.Apis.Drive.v2.DriveService.Files.List()");
+
+                try
+                {
+                    FilesResource.ListRequest listRequest = service.Files.List();
+
+                    listRequest.MaxResults = 1000;
+
+                    listRequest.Fields = RequestFields.ListFileFields;
+
+                    listRequest.Q = "trashed=false and '" + parentId + "' in parents";
+
+                    do
+                    {
+                        FileList fileList = listRequest.Execute();
+
+                        files.AddRange(fileList.Items);
+
+                        listRequest.PageToken = fileList.NextPageToken;
+
+                        Log.Performance("Loaded " + files.Count + " file(s)");
+                    }
+                    while (!String.IsNullOrEmpty(listRequest.PageToken));
+                }
+                finally
+                {
+                    Log.EndPerformance(ref stopWatch, "End - Google.Apis.Drive.v2.DriveService.Files.List()");
+                }
+
+                foreach (File file in files)
+                {
+                    file.OriginalFilename = file.Title;
+                    file.Title = Win32.MakeFileNameWindowsSafe(file.Title);
+                }
+
+                return files;
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception);
+
+                return null;
+            }
+        }

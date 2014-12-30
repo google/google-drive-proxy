@@ -1,0 +1,53 @@
+# About Drive Proxy
+
+Drive Proxy is a Windows Service that streamlines communication with Google
+Drive. It is meant to facilitate the construction of tools that leverage Google
+Drive's cloud storage capacity without burdening the hard drive and network with
+unnecesary local copies. Drive Proxy handles authentication with Google Drive
+and manages the cache where the needed files reside.
+
+It uses a simple protocol to communicate with client applications over a pipe.
+It is currently used by the DriveFusion project to provide a transparent
+interface between Windows Explorer and Google Drive.
+
+# Supported OS
+
+- Windows 7 32-bit and 64-bit
+- Windows 8
+- Windows Server
+- Citrix Server
+
+# Contents
+
+The bundled Visual Studio Solution file will work with Visual Studio 2010 and
+later, and includes:
+- the DriveProxy project
+  This project builds the Drive Proxy background process, which is an interface
+  to Drive API.
+- the DriveProxy.Installer WiX project
+  This project builds the installer for DriveProxy and DriveProxy Service. This
+  only includes Drive Proxy, it will not install Drive Fusion.
+- the DriveProxy.Service project
+  This project builds the DriveProxy Service which manages Drive Proxy.
+- the DriveProxy.Test project
+  This project builds the GUI Application Test for the DriveProxy project.
+- the GlobalAssemblyBuilder project
+  This project centralizes the project name and the version number for all the
+  projects.
+
+# Build instructions
+
+In the ProjectConfig.txt file, replace the placeholders for your client ID,
+client secret and installer upgrade code with your own. Then open the solution
+and rebuild all.
+
+# Installation instructions
+
+This project should not be installed on its own. The client application should
+install it as part of its installation.
+
+# Usage
+
+The service can not be used by itself, instead an application would use it to
+communicate with Google Drive. The Drive Fusion project is an example of such an
+application.

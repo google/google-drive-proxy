@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Copyright 2014 Google Inc
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<topic id="a6026c87-d2ac-43d4-8419-9e5f12ec0657" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"
+                               xmlns:xlink="http://www.w3.org/1999/xlink">
+    <introduction>
+      <para>
+        The topics in this section describe the various changes made to the Drive Proxy Service over the
+        life of the project.
+      </para>
+    </introduction>
+
+    <section>
+      <title>Version History</title>
+      <content>
+        <para>Select a version below to see a description of its changes.</para>
+
+        <list class="bullet">
+          <listItem>
+            <para>
+              <link xlink:href="868fdc3a-baf1-4391-a561-56cc67ea45f8" />
+            </para>
+          </listItem>
+        </list>
+
+      </content>
+    </section>
+
+    <relatedTopics>
+      <link xlink:href="861aca4f-179d-474a-adc8-b3774f194240" />
+    </relatedTopics>
+
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.8</ProductVersion>
+    <ProjectGuid>{5a95a4ed-b60a-42dc-bb6f-ab0dcf18746b}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>DriveProxy</OutputName>
+    <OutputType>Package</OutputType>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' AND '$(MSBuildExtensionsPath32)' != '' ">$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <WixTargetsPath Condition=" '$(WixTargetsPath)' == '' ">$(MSBuildExtensionsPath)\Microsoft\WiX\v3.x\Wix.targets</WixTargetsPath>
+    <IntermediateOutputPath>..\obj\$(Configuration)\DriveProxy.Installer</IntermediateOutputPath>
+    <OutputPath>..\obj\$(Configuration)\DriveProxy.Installer\</OutputPath>
+    <IncludeSearchPaths>..\obj\$(Configuration)\DriveProxy.Installer</IncludeSearchPaths>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DefineConstants>Debug</DefineConstants>
+    <DefineConstants>SourcePath=..\bin\$(Configuration)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <WixVariables>
+    </WixVariables>
+    <DefineConstants>SourcePath=..\bin\$(Configuration)</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="source.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)\WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DriveProxy.Service\DriveProxy.Service.csproj">
+      <Name>DriveProxy.Service</Name>
+      <Project>{868b3f19-2e2a-4756-bf49-7d5d3dcea46e}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <UsingTask TaskName="WixPropertyBuilder" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <ConfigFile ParameterType="System.String" Required="true" />
+      <OutputIncludeFile ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System.Diagnostics" />
+      <Code Type="Fragment" Language="cs"><![CDATA[
+        //var outputFolderInfo = new DirectoryInfo(Path.GetDirectoryName(this.OutputIncludeFile));
+        Directory.CreateDirectory(Path.GetDirectoryName(this.OutputIncludeFile));
+        StreamWriter propIncludeWriter = new StreamWriter(this.OutputIncludeFile, false);
+        propIncludeWriter.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+        propIncludeWriter.WriteLine("<Include Id=\"ProjectProperties\">");
+
+        StreamReader configReader = new StreamReader(this.ConfigFile);
+        string line;
+        while ((line = configReader.ReadLine()) != null)
+        {
+          var splittedLine = line.Split(" ".ToCharArray(), 2);
+          var key = splittedLine[0];
+          var value = splittedLine[1];
+          string newLine = "<?define " + key + "=\"" + value + "\" ?>";
+          propIncludeWriter.WriteLine(newLine);
+        }
+        propIncludeWriter.WriteLine("</Include>");
+        propIncludeWriter.Close();
+        configReader.Close();
+        ]]></Code>
+    </Task>
+  </UsingTask>
+  <Target Name="BeforeBuild">
+    <WixPropertyBuilder ConfigFile="$(ProjectDir)..\ProjectConfig.txt" OutputIncludeFile="..\obj\$(Configuration)\DriveProxy.Installer\DriveProxyProperties.wxi">
+    </WixPropertyBuilder>
+    <HeatDirectory SuppressCom="true" SuppressRootDirectory="true" SuppressRegistry="true" DirectoryRefId="INSTALLFOLDER" OutputFile="source.wxs" Directory="..\bin\$(Configuration)" ComponentGroupName="SourceComponentGroup" ToolPath="$(WixToolPath)" PreprocessorVariable="var.SourcePath" AutogenerateGuids="true">
+    </HeatDirectory>
+  </Target>
+</Project>

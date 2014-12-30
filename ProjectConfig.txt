@@ -1,0 +1,11 @@
+Version 1.0.0.0
+Title DriveProxy
+Description A proxy service that is used to access Google Drive.
+Company Google Inc
+Product Drive Proxy Service
+Copyright Copyright \u00A9 2014
+CompanyPath Google
+ServicePipeName DriveProxy.Service
+ClientID <Your application google id here>
+ClientSecret <Your application google secret here>
+UpgradeCode <A GUID to identify your project here>

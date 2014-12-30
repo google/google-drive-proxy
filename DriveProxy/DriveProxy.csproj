@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{56DC1846-3CEE-4A18-A24F-935562BC3471}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DriveProxy</RootNamespace>
+    <AssemblyName>DriveProxy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <OutputPath>..\bin\$(Configuration)\</OutputPath>
+    <BaseIntermediateOutputPath>..\obj\$(ProjectName)\</BaseIntermediateOutputPath>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Release\$(ProjectName).XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Google.Apis">
+      <HintPath>..\packages\Google.Apis.1.9.0\lib\net40\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth">
+      <HintPath>..\packages\Google.Apis.Auth.1.9.0\lib\net40\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices">
+      <HintPath>..\packages\Google.Apis.Auth.1.9.0\lib\net40\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core">
+      <HintPath>..\packages\Google.Apis.Core.1.9.0\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v2">
+      <HintPath>..\packages\Google.Apis.Drive.v2.1.9.0.1540\lib\portable-net40+sl50+win+wpa81+wp80\Google.Apis.Drive.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices">
+      <HintPath>..\packages\Google.Apis.1.9.0\lib\net40\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Extensions">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives">
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.2.22.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.22\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.1.9\lib\net40\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Zlib.Portable">
+      <HintPath>..\packages\Zlib.Portable.1.10.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyBuilder\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\GlobalAssemblyBuilder\Properties\CustomAttributes.cs">
+      <Link>Properties\CustomAttributes.cs</Link>
+    </Compile>
+    <Compile Include="API\AboutInfo.cs" />
+    <Compile Include="API\Authenticator.cs" />
+    <Compile Include="API\CleanupFileWatcher.cs" />
+    <Compile Include="API\Connection.cs" />
+    <Compile Include="API\DriveService.cs" />
+    <Compile Include="API\FileInfo.cs" />
+    <Compile Include="API\FileTitles.cs" />
+    <Compile Include="API\Interfaces\IDriveService.cs" />
+    <Compile Include="API\Journal.cs" />
+    <Compile Include="API\LogInfo.cs" />
+    <Compile Include="API\MimeType.cs" />
+    <Compile Include="API\RequestFields.cs" />
+    <Compile Include="API\Settings.cs" />
+    <Compile Include="API\State.cs" />
+    <Compile Include="API\Streams\CopyStream.cs" />
+    <Compile Include="API\Streams\DownloadStream.cs" />
+    <Compile Include="API\Streams\InsertStream.cs" />
+    <Compile Include="API\Streams\MoveStream.cs" />
+    <Compile Include="API\Streams\RenameStream.cs" />
+    <Compile Include="API\Streams\Stream.cs" />
+    <Compile Include="API\Streams\StreamType.cs" />
+    <Compile Include="API\Streams\TrashStream.cs" />
+    <Compile Include="API\Streams\UntrashStream.cs" />
+    <Compile Include="API\Streams\UploadStream.cs" />
+    <Compile Include="API\UploadFileWatcher.cs" />
+    <Compile Include="Forms\DoubleBufferedPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\DoubleBufferedPanel.Designer.cs">
+      <DependentUpon>DoubleBufferedPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FeedbackForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FeedbackForm.Designer.cs">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogForm.Designer.cs">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainForm.designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SettingsForm.designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\StateControl.designer.cs">
+      <DependentUpon>StateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\StateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StateForm.designer.cs" />
+    <Compile Include="Forms\StatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StatusForm.Designer.cs">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Methods\AuthenticateMethodInfo.cs" />
+    <Compile Include="Methods\CopyFilesMethodInfo.cs" />
+    <Compile Include="Methods\DownloadFileMethodInfo.cs" />
+    <Compile Include="Methods\GetAboutMethodInfo.cs" />
+    <Compile Include="Methods\GetFilesMethodInfo.cs" />
+    <Compile Include="Methods\GetLogMethodInfo.cs" />
+    <Compile Include="Methods\InsertFileMethodInfo.cs" />
+    <Compile Include="Methods\MoveFilesMethodInfo.cs" />
+    <Compile Include="Methods\RenameFileMethodInfo.cs" />
+    <Compile Include="Methods\TrashFilesMethodInfo.cs" />
+    <Compile Include="Methods\UntrashFilesMethodInfo.cs" />
+    <Compile Include="Methods\UploadFileMethodInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Service\DetailInfo.cs" />
+    <Compile Include="Service\ErrorInfo.cs" />
+    <Compile Include="Service\MethodInfo.cs" />
+    <Compile Include="Service\MethodType.cs" />
+    <Compile Include="Service\ParameterInfo.cs" />
+    <Compile Include="Service\ResultInfo.cs" />
+    <Compile Include="Service\Service.cs" />
+    <Compile Include="Service\ServicePipe.cs" />
+    <Compile Include="Service\ServicePipeClient.cs" />
+    <Compile Include="Service\ServicePipeServer.cs" />
+    <Compile Include="Service\XElementObject.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="Utils\Certificate.cs" />
+    <Compile Include="Utils\DataProtection.cs" />
+    <Compile Include="Utils\Debugger.cs" />
+    <Compile Include="Utils\EncryptedFileDataStore.cs" />
+    <Compile Include="Utils\IniFile.cs" />
+    <Compile Include="Utils\Log.cs" />
+    <Compile Include="Utils\Math.cs" />
+    <Compile Include="Utils\Mutex.cs" />
+    <Compile Include="Utils\Pipe.cs" />
+    <Compile Include="Utils\Registry.cs" />
+    <Compile Include="Utils\StopWatch.cs" />
+    <Compile Include="Utils\UserProcess.cs" />
+    <Compile Include="Utils\Win32.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\FeedbackForm.resx">
+      <DependentUpon>FeedbackForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogForm.resx">
+      <DependentUpon>LogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StateControl.resx">
+      <DependentUpon>StateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StateForm.resx" />
+    <EmbeddedResource Include="Forms\StatusForm.resx">
+      <DependentUpon>StatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="API\_ListFiles.txt" />
+    <Content Include="Images\23.ico" />
+    <Content Include="Images\23.png" />
+    <Content Include="Images\bigFile.png" />
+    <Content Include="Images\bigFolder.png" />
+    <Content Include="Images\close.png" />
+    <Content Include="Images\Doc.ico" />
+    <Content Include="Images\Doc.png" />
+    <Content Include="Images\download.png" />
+    <Content Include="Images\Drawing.ico" />
+    <Content Include="Images\Drawing.png" />
+    <Content Include="Images\File.ico" />
+    <Content Include="Images\File.png" />
+    <Content Include="Images\Folder.ico" />
+    <Content Include="Images\Folder.png" />
+    <Content Include="Images\Form.ico" />
+    <Content Include="Images\Form.png" />
+    <Content Include="Images\FusionTables.ico" />
+    <Content Include="Images\FusionTables.png" />
+    <Content Include="Images\googledrive.ico" />
+    <Content Include="Images\googledrive.png" />
+    <Content Include="Images\google_drive_transparent_300.png" />
+    <Content Include="Images\google_drive_transparent_60.png" />
+    <Content Include="Images\headerBkgd.png" />
+    <Content Include="Images\Keep.ico" />
+    <Content Include="Images\Keep.png" />
+    <Content Include="Images\max.png" />
+    <Content Include="Images\min.png" />
+    <Content Include="Images\Presentation.ico" />
+    <Content Include="Images\Presentation.png" />
+    <Content Include="Images\SharedFolder.ico" />
+    <Content Include="Images\SharedFolder.png" />
+    <Content Include="Images\smFile.png" />
+    <Content Include="Images\smFolder.png" />
+    <Content Include="Images\Spreadsheet.ico" />
+    <Content Include="Images\Spreadsheet.png" />
+    <Content Include="Images\TrashCan.png" />
+    <Content Include="Images\upload.png" />
+    <Content Include="Images\uploadBkgd.PNG" />
+    <Content Include="Images\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+</Project>
