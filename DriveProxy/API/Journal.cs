@@ -816,16 +816,19 @@ namespace DriveProxy.API
 
               foreach (Change change in changes)
               {
-                //TODO(spueyo): Check Journal Logic http://b2/18376020
+                if (change.Deleted.HasValue && change.Deleted.Value)
+                {
+                  _RemoveItem(change.FileId);
+                  _RemoveFile(change.FileId);
+                }
+
                 string parentId = GetParentId(change.File);
 
                 if (!Files.ContainsKey(parentId))
                 {
                   continue;
                 }
-
-                if ((!change.Deleted.HasValue || !change.Deleted.Value) &&
-                    (!IsTrashed(change.File)))
+                if (!IsTrashed(change.File))
                 {
                   Item item = _AddItem(change.File);
 

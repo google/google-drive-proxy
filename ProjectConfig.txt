@@ -1,4 +1,4 @@
-Version 1.0.0.0
+Version 1.0.0.1
 Title DriveProxy
 Description A proxy service that is used to access Google Drive.
 Company Google Inc
