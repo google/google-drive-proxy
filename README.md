@@ -57,28 +57,28 @@ Google API project in the Google Developers Console.
  13. You will be presented with a Client ID and Client Secret.
  14. Switch to the root of the git repository and using a text editor, open
      ProjectConfig.txt
- 15. You will see a line “ClientID <Your application google id here>”. Replace
-     “<Your application google id here>” by the Client ID in the developer
-     console.
+ 15. You will see a line “ClientID \<Your application google id here\>”.
+     Replace “\<Your application google id here\>” by the Client ID in the
+     developer console.  
      Example: “944352700820-eh520uo159llp750lf9jmn6srcm35r3j.apps.
      googleusercontent.com”.
- 16. You will see a line “ClientSecret <Your application google secret here>”.
-     Replace “<Your application google secret here>” by the Client Secret in
-     the developer console.
+ 16. You will see a line “ClientSecret \<Your application google secret
+     here\>”. Replace “\<Your application google secret here\>” by the Client
+     Secret in the developer console.  
      Example: “BfI0jTaVzBAuRo9odDmheM2Z”
- 17. You will see a line “UpgradeCode <A GUID to identify your project here>”.
-     Generate a GUID and replace “<A GUID to identify your project here>” with
-     the generated GUID.
+ 17. You will see a line “UpgradeCode \<A GUID to identify your project
+     here\>”. Generate a GUID and replace “\<A GUID to identify your project
+     here\>” with the generated GUID.  
      Example: cb1ed02a-7233-4a67-a9f7-ad10a42a2082
- 18. You will see a line “Company <Your Company name here>”. Replace “<Your
-     Company name here>” with the company name you wish to appear in the
-     “Add/Remove programs” window’s company column for Drive Proxy’s entry.
+ 18. You will see a line “Company \<Your Company name here\>”. Replace “\<Your
+     Company name here\>” with the company name you wish to appear in the
+     “Add/Remove programs” window’s company column for Drive Proxy’s entry.  
      Example: “Initech, Inc.”
- 19. You will see a line “CompanyPath <Your Company here, must be a valid
-     Windows folder name>”. The installer will install to “%programfiles%\
-     CompanyPath\Drive Proxy Service”. Replace “<Your Company here, must be a
-     valid Windows folder name>” with the folder name under which you wish to
-     group your programs.
+ 19. You will see a line “CompanyPath \<Your Company here, must be a valid
+     Windows folder name\>”. The installer will install to “%programfiles%\
+     CompanyPath\Drive Proxy Service”. Replace “\<Your Company here, must be a
+     valid Windows folder name\>” with the folder name under which you wish to
+     group your programs.  
      Example: “Initech”
  20. You can then open DriveProxy.sln and compile the Installer project.
 
@@ -90,9 +90,10 @@ CompanyPath\Drive Proxy Service”.
 # Usage
 
 The service can not be used by itself, instead an application would use it to
-communicate with Google Drive. The Drive Fusion project is an example of such an
-application.
+communicate with Google Drive. The Drive Fusion project is an example of such
+an application.
 
 # Contact
 
-For questions and answers join/view the [google-drive-proxy](https://groups.google.com/d/forum/google-drive-proxy) Google Group.
+For questions and answers join/view the [google-drive-proxy]
+(https://groups.google.com/d/forum/google-drive-proxy) Google Group.
