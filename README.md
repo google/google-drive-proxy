@@ -41,15 +41,15 @@ This github project is intended to be used as a component of your own project.
 Since the service needs to talk with the Google APIs, you will need to setup a
 Google API project in the Google Developers Console.
 
-  1. Go to: https://console.developers.google.com/project 
-  2. Click on “Create Project”
-  3. Name your project and click on “Create”
-  4. Wait for the project to be created.
-  5. From the left hand side menu, click on “APIs & auth”.
-  6. From the left hand side menu, Click on “APIs”
-  7. You will need to enable the “Drive API” by toggling the switch to “on”
-  8. From the left hand side menu, Click on “Credentials”
-  9. Click on “Create new Client ID”
+ 1. Go to: https://console.developers.google.com/project 
+ 2. Click on “Create Project”
+ 3. Name your project and click on “Create”
+ 4. Wait for the project to be created.
+ 5. From the left hand side menu, click on “APIs & auth”.
+ 6. From the left hand side menu, Click on “APIs”
+ 7. You will need to enable the “Drive API” by toggling the switch to “on”
+ 8. From the left hand side menu, Click on “Credentials”
+ 9. Click on “Create new Client ID”
  10. Select “Installed application” and click on “Configure consent screen”
  11. Fill in the details for your consent screen and click on “Save”.
  12. A new form will be presented. Select “Installed application” and “Other”
