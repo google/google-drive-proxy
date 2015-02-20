@@ -79,8 +79,17 @@ namespace DriveProxy.Forms
         Opacity = 0;
         StartPosition = System.Windows.Forms.FormStartPosition.Manual;
         Location = new Point(-1000, -1000);
-        notifyIcon1.Text = DriveService.Settings.Product + " " + DriveService.Settings.UserName + " on " +
-                           Environment.MachineName;
+        string notifyText = DriveService.Settings.Product + " " + DriveService.Settings.UserName + " on " +
+                            Environment.MachineName;
+        if (notifyText.Length > 63)
+        {
+          notifyIcon1.Text = notifyText.Substring(0, 60) + "...";
+        }
+        else
+        {
+          notifyIcon1.Text = notifyText;
+        }
+
 
         foreach (MethodInfo methodInfo in DriveProxy.Service.Service.Methods)
         {
