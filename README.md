@@ -7,8 +7,9 @@ unnecesary local copies. Drive Proxy handles authentication with Google Drive
 and manages the cache where the needed files reside.
 
 It uses a simple protocol to communicate with client applications over a pipe.
-It is currently used by the DriveFusion project to provide a transparent
-interface between Windows Explorer and Google Drive.
+It is currently used by the [Google Drive Shell Extension]
+(https://github.com/google/google-drive-shell-extension) project to provide a
+transparent interface between Windows Explorer and Google Drive.
 
 # Supported OS
 
@@ -26,7 +27,7 @@ later, and includes:
   to Drive API.
 - the DriveProxy.Installer WiX project
   This project builds the installer for DriveProxy and DriveProxy Service. This
-  only includes Drive Proxy, it will not install Drive Fusion.
+  only includes Drive Proxy, it will not install Google Drive Shell Extension.
 - the DriveProxy.Service project
   This project builds the DriveProxy Service which manages Drive Proxy.
 - the DriveProxy.Test project
@@ -90,8 +91,8 @@ CompanyPath\Drive Proxy Service”.
 # Usage
 
 The service can not be used by itself, instead an application would use it to
-communicate with Google Drive. The Drive Fusion project is an example of such
-an application.
+communicate with Google Drive. The Google Drive Shell Extension project is an
+example of such an application.
 
 # Contact
 
