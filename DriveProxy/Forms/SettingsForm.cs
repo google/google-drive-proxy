@@ -35,11 +35,30 @@ namespace DriveProxy.Forms
     {
       try
       {
-        comboBoxLogLevel.Items.Add(LogType.None.ToString());
-        comboBoxLogLevel.Items.Add(LogType.All.ToString());
-        comboBoxLogLevel.Items.Add(LogType.Warning.ToString());
-        comboBoxLogLevel.Items.Add(LogType.Error.ToString());
-        comboBoxLogLevel.Items.Add(LogType.Performance.ToString());
+        lstLogTypes.SetItemCheckState(0,
+                                      (DriveService.Settings.LogLevel & LogType.Error) == 0
+                                        ? CheckState.Unchecked
+                                        : CheckState.Checked);
+
+        lstLogTypes.SetItemCheckState(1,
+                                      (DriveService.Settings.LogLevel & LogType.Warning) == 0
+                                        ? CheckState.Unchecked
+                                        : CheckState.Checked);
+
+        lstLogTypes.SetItemCheckState(2,
+                                      (DriveService.Settings.LogLevel & LogType.Information) == 0
+                                        ? CheckState.Unchecked
+                                        : CheckState.Checked);
+
+        lstLogTypes.SetItemCheckState(3,
+                                      (DriveService.Settings.LogLevel & LogType.Debug) == 0
+                                        ? CheckState.Unchecked
+                                        : CheckState.Checked);
+
+        lstLogTypes.SetItemCheckState(4,
+                                      (DriveService.Settings.LogLevel & LogType.Performance) == 0
+                                        ? CheckState.Unchecked
+                                        : CheckState.Checked);
 
         ComboBoxItem.AddItem(comboBoxFileReturnType,
                              "Filter Google Files (Recommended)",
@@ -51,7 +70,6 @@ namespace DriveProxy.Forms
                              "Return All Google Files (Not recommended)",
                              FileReturnType.ReturnAllGoogleFiles);
 
-        comboBoxLogLevel.SelectedItem = DriveService.Settings.LogLevel.ToString();
         ComboBoxItem.SetSelectedItem(comboBoxFileReturnType, DriveService.Settings.FileReturnType);
         checkBoxUseCaching.Checked = DriveService.Settings.UseCaching;
         checkBoxStartup.Checked = DriveService.Settings.IsStartingStartOnStartup;
@@ -68,8 +86,29 @@ namespace DriveProxy.Forms
     {
       try
       {
-        DriveService.Settings.LogLevel =
-          (LogType)Enum.Parse(typeof(LogType), comboBoxLogLevel.SelectedItem.ToString());
+        var logLevel = LogType.None;
+        if (lstLogTypes.GetItemChecked(0))
+        {
+          logLevel |= LogType.Error;
+        }
+        if (lstLogTypes.GetItemChecked(1))
+        {
+          logLevel |= LogType.Warning;
+        }
+        if (lstLogTypes.GetItemChecked(2))
+        {
+          logLevel |= LogType.Information;
+        }
+        if (lstLogTypes.GetItemChecked(3))
+        {
+          logLevel |= LogType.Debug;
+        }
+        if (lstLogTypes.GetItemChecked(4))
+        {
+          logLevel |= LogType.Performance;
+        }
+
+        DriveService.Settings.LogLevel = logLevel;
         DriveService.Settings.FileReturnType = (FileReturnType)ComboBoxItem.GetSelectedItem(comboBoxFileReturnType);
         DriveService.Settings.UseCaching = checkBoxUseCaching.Checked;
         DriveService.Settings.IsStartingStartOnStartup = checkBoxStartup.Checked;
@@ -183,7 +222,7 @@ namespace DriveProxy.Forms
 
         IEnumerable<string> itemsList = comboBox.Items.Cast<object>().Select(item => item.ToString());
 
-        foreach (string s in itemsList)
+        foreach (var s in itemsList)
         {
           int newWidth = (int)g.MeasureString(s, font).Width + vertScrollBarWidth;
 

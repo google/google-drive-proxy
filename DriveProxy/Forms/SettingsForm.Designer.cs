@@ -54,116 +54,119 @@ namespace DriveProxy.Forms
       this.comboBoxFileReturnType = new System.Windows.Forms.ComboBox();
       this.label2 = new System.Windows.Forms.Label();
       this.checkBoxUseCaching = new System.Windows.Forms.CheckBox();
-      this.comboBoxLogLevel = new System.Windows.Forms.ComboBox();
       this.label1 = new System.Windows.Forms.Label();
+      this.lstLogTypes = new System.Windows.Forms.CheckedListBox();
       this.groupBox.SuspendLayout();
       this.SuspendLayout();
-      //
+      // 
       // buttonOK
-      //
+      // 
       this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.buttonOK.Location = new System.Drawing.Point(174, 136);
+      this.buttonOK.Location = new System.Drawing.Point(174, 210);
       this.buttonOK.Name = "buttonOK";
       this.buttonOK.Size = new System.Drawing.Size(75, 23);
       this.buttonOK.TabIndex = 2;
       this.buttonOK.Text = "OK";
       this.buttonOK.UseVisualStyleBackColor = true;
       this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
-      //
+      // 
       // buttonCancel
-      //
+      // 
       this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.buttonCancel.Location = new System.Drawing.Point(255, 136);
+      this.buttonCancel.Location = new System.Drawing.Point(255, 210);
       this.buttonCancel.Name = "buttonCancel";
       this.buttonCancel.Size = new System.Drawing.Size(75, 23);
       this.buttonCancel.TabIndex = 0;
       this.buttonCancel.Text = "Cancel";
       this.buttonCancel.UseVisualStyleBackColor = true;
       this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-      //
+      // 
       // groupBox
-      //
-      this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+      // 
+      this.groupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+      this.groupBox.Controls.Add(this.lstLogTypes);
       this.groupBox.Controls.Add(this.checkBoxStartup);
       this.groupBox.Controls.Add(this.comboBoxFileReturnType);
       this.groupBox.Controls.Add(this.label2);
       this.groupBox.Controls.Add(this.checkBoxUseCaching);
-      this.groupBox.Controls.Add(this.comboBoxLogLevel);
       this.groupBox.Controls.Add(this.label1);
       this.groupBox.Location = new System.Drawing.Point(12, 12);
       this.groupBox.Name = "groupBox";
-      this.groupBox.Size = new System.Drawing.Size(318, 118);
+      this.groupBox.Size = new System.Drawing.Size(318, 192);
       this.groupBox.TabIndex = 1;
       this.groupBox.TabStop = false;
-      //
+      // 
       // checkBoxStartup
-      //
+      // 
       this.checkBoxStartup.AutoSize = true;
-      this.checkBoxStartup.Location = new System.Drawing.Point(71, 95);
+      this.checkBoxStartup.Location = new System.Drawing.Point(71, 70);
       this.checkBoxStartup.Name = "checkBoxStartup";
       this.checkBoxStartup.Size = new System.Drawing.Size(152, 17);
       this.checkBoxStartup.TabIndex = 5;
-      this.checkBoxStartup.Text = String.Format("Start {0} on startup",DriveService.Settings.Title);
+      this.checkBoxStartup.Text = "Start DriveProxy on startup";
       this.checkBoxStartup.UseVisualStyleBackColor = true;
-      //
+      // 
       // comboBoxFileReturnType
-      //
-      this.comboBoxFileReturnType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+      // 
+      this.comboBoxFileReturnType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.comboBoxFileReturnType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboBoxFileReturnType.FormattingEnabled = true;
-      this.comboBoxFileReturnType.Location = new System.Drawing.Point(71, 47);
+      this.comboBoxFileReturnType.Location = new System.Drawing.Point(71, 22);
       this.comboBoxFileReturnType.Name = "comboBoxFileReturnType";
       this.comboBoxFileReturnType.Size = new System.Drawing.Size(228, 21);
       this.comboBoxFileReturnType.TabIndex = 4;
       this.comboBoxFileReturnType.DropDown += new System.EventHandler(this.comboBoxFileReturnType_DropDown);
-      //
+      // 
       // label2
-      //
+      // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(14, 50);
+      this.label2.Location = new System.Drawing.Point(14, 25);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(53, 13);
       this.label2.TabIndex = 3;
       this.label2.Text = "File Type:";
-      //
+      // 
       // checkBoxUseCaching
-      //
+      // 
       this.checkBoxUseCaching.AutoSize = true;
-      this.checkBoxUseCaching.Location = new System.Drawing.Point(71, 76);
+      this.checkBoxUseCaching.Location = new System.Drawing.Point(71, 51);
       this.checkBoxUseCaching.Name = "checkBoxUseCaching";
       this.checkBoxUseCaching.Size = new System.Drawing.Size(87, 17);
       this.checkBoxUseCaching.TabIndex = 2;
       this.checkBoxUseCaching.Text = "Use Caching";
       this.checkBoxUseCaching.UseVisualStyleBackColor = true;
-      //
-      // comboBoxLogLevel
-      //
-      this.comboBoxLogLevel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-      this.comboBoxLogLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-      this.comboBoxLogLevel.FormattingEnabled = true;
-      this.comboBoxLogLevel.Location = new System.Drawing.Point(71, 20);
-      this.comboBoxLogLevel.Name = "comboBoxLogLevel";
-      this.comboBoxLogLevel.Size = new System.Drawing.Size(228, 21);
-      this.comboBoxLogLevel.TabIndex = 1;
-      //
+      // 
       // label1
-      //
+      // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(10, 23);
+      this.label1.Location = new System.Drawing.Point(10, 101);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(57, 13);
       this.label1.TabIndex = 0;
       this.label1.Text = "Log Level:";
-      //
+      // 
+      // lstLogTypes
+      // 
+      this.lstLogTypes.FormattingEnabled = true;
+      this.lstLogTypes.Items.AddRange(new object[] {
+            "Error",
+            "Warning",
+            "Information",
+            "Debug",
+            "Performance"});
+      this.lstLogTypes.Location = new System.Drawing.Point(74, 101);
+      this.lstLogTypes.Name = "lstLogTypes";
+      this.lstLogTypes.Size = new System.Drawing.Size(225, 79);
+      this.lstLogTypes.TabIndex = 6;
+      // 
       // SettingsForm
-      //
+      // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(342, 165);
+      this.ClientSize = new System.Drawing.Size(342, 239);
       this.Controls.Add(this.groupBox);
       this.Controls.Add(this.buttonCancel);
       this.Controls.Add(this.buttonOK);
@@ -172,7 +175,7 @@ namespace DriveProxy.Forms
       this.ShowIcon = false;
       this.ShowInTaskbar = false;
       this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-      this.Text = String.Format("{0} Settings", DriveService.Settings.Product);
+      this.Text = "Drive Proxy Service Settings";
       this.TopMost = true;
       this.Load += new System.EventHandler(this.SettingsForm_Load);
       this.groupBox.ResumeLayout(false);
@@ -186,11 +189,11 @@ namespace DriveProxy.Forms
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.GroupBox groupBox;
-        private System.Windows.Forms.ComboBox comboBoxLogLevel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBoxUseCaching;
         private System.Windows.Forms.ComboBox comboBoxFileReturnType;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxStartup;
+        private System.Windows.Forms.CheckedListBox lstLogTypes;
     }
 }

@@ -275,8 +275,6 @@ namespace DriveProxy.Utils
     {
       try
       {
-        _level = LogType.Information | LogType.Warning | LogType.Error;
-
         if ((_level & logType) == 0)
         {
           return;
