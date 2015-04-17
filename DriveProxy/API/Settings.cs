@@ -624,11 +624,21 @@ namespace DriveProxy.API
             var iniFile = new IniFile(FilePath);
             string value = "";
 
-            LogLevel = LogType.None;
+            LogLevel = LogType.Error;
             FileReturnType = FileReturnType.FilterGoogleFiles;
 
             value = iniFile.GetValue("Settings", "UseCaching");
             UseCaching = ToBoolean(value);
+
+
+            var logLevel = iniFile.GetValue("Settings", "LogLevel");
+            if (!string.IsNullOrEmpty(logLevel))
+              LogLevel = (LogType)Enum.Parse(typeof(LogType), iniFile.GetValue("Settings", "LogLevel"));
+
+            var fileReturnType = iniFile.GetValue("Settings", "FileReturnType");
+            _FileReturnType = FileReturnType.FilterGoogleFiles;
+            if (!string.IsNullOrEmpty(fileReturnType))
+              _FileReturnType = (FileReturnType)Enum.Parse(typeof(FileReturnType), fileReturnType); 
           }
         }
         catch (Exception exception)
@@ -655,6 +665,8 @@ namespace DriveProxy.API
         {
           var iniFile = new IniFile(FilePath);
           iniFile.SetValue("Settings", "UseCaching", _UseCaching.ToString());
+          iniFile.SetValue("Settings", "LogLevel", LogLevel.ToString());
+          iniFile.SetValue("Settings", "FileReturnType", _FileReturnType.ToString());
         }
         catch (Exception exception)
         {
