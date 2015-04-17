@@ -18,7 +18,7 @@ limitations under the License.
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
      xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
   <?include DriveProxyProperties.wxi ?>
-  <Product Id="*" Name="$(var.Product)" Language="1033" Version="$(var.Version)" Manufacturer="$(var.Company)"
+  <Product Id="*" Name="$(var.Product) $(var.Version)" Language="1033" Version="$(var.Version)" Manufacturer="$(var.Company)"
            UpgradeCode="$(var.UpgradeCode)">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Media Id="1" Cabinet="DriveProxy.cab" EmbedCab="yes" />
