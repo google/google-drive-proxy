@@ -230,7 +230,7 @@ namespace DriveProxy.API
           file.Parents = new List<ParentReference> {parentReference};
 
           file.Title = _title;
-          file.Description = "Created by Drive Fusion Shell Extention";
+          file.Description = "Created by Google Drive Proxy.";
           file.FileExtension = System.IO.Path.GetExtension(_title);
           file.MimeType = _mimeType;
           file.ModifiedDate = _lastWriteTime.ToUniversalTime();
