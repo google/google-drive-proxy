@@ -41,6 +41,7 @@ namespace DriveProxy.API
       private bool _syncingFromWeb;
       private bool _syncingToDisk;
       private ConcurrentDictionary<string, Item> _files;
+      private ConcurrentDictionary<string, long> _fileChangeId;
 
       private ConcurrentDictionary<string, ConcurrentDictionary<string, Item>> _filesByParent;
       private bool _multiThreaded = true;
@@ -52,6 +53,12 @@ namespace DriveProxy.API
       {
         get { return _files ?? (_files = new ConcurrentDictionary<string, Item>()); }
         set { _files = value; }
+      }
+
+      private ConcurrentDictionary<string, long> FileChangeId
+      {
+        get { return _fileChangeId ?? (_fileChangeId = new ConcurrentDictionary<string, long>()); }
+        set { _fileChangeId = value; }
       }
 
       private ConcurrentDictionary<string, ConcurrentDictionary<string, Item>> FilesByParent
@@ -644,6 +651,16 @@ namespace DriveProxy.API
                 return null;
               }
 
+              // Remove existing files and repopulate.
+              var files = GetFilesByParent(fileId);
+              if (files != null)
+              {
+                foreach (var child in files)
+                {
+                  RemoveItem(child.Key);
+                }
+              }
+
               List<File> children = null;
 
               if (getChildren)
@@ -1087,6 +1104,24 @@ namespace DriveProxy.API
         }
       }
 
+      private long GetLargestChangeId()
+      {
+        try
+        {
+          using (Connection connection = Connection.Create())
+          {
+            About about = _GetAbout("largestChangeId");
+            return GetLong(about.LargestChangeId);
+          }
+        }
+        catch (Exception exception)
+        {
+          Log.Error(exception);
+
+          return 0;
+        }
+      }
+
       public File GetCachedFile(string fileId, bool getChildren, out List<File> children)
       {
         children = null;
@@ -1112,26 +1147,12 @@ namespace DriveProxy.API
               Item item = null;
 
               Files.TryGetValue(fileId, out item);
+              
+              long largestChangeId = GetLargestChangeId();
+              long fileChangeId = 0;
+              FileChangeId.TryGetValue(fileId, out fileChangeId);
 
-              bool isLoaded = false;
-
-              if (item == null || item.Status == ItemStatus.Pending)
-              {
-                item = _LoadFromDisk(fileId);
-
-                if (item != null && item.Status == ItemStatus.Cached)
-                {
-                  if (!_SyncChangesFromWeb())
-                  {
-                    Log.Error("Cannot get Journal cached file - Cannot sync web changes.");
-                    return null;
-                  }
-
-                  isLoaded = true;
-                }
-              }
-
-              if (!isLoaded)
+              if (largestChangeId > fileChangeId)
               {
                 if (item == null)
                 {
@@ -1155,12 +1176,14 @@ namespace DriveProxy.API
                 }
                 else if (item.Status == ItemStatus.Cached)
                 {
-                  if (!_SyncChangesFromWeb())
+                  item = _SyncFromWeb(fileId, getChildren);
+                  if (item == null)
                   {
-                    Log.Error("Cannot get Journal cached file - Cannot sync web changes.");
+                    Log.Error("Cannot get Journal cached file - Cannot sync from web.");
                     return null;
                   }
                 }
+                FileChangeId[fileId] = largestChangeId;
               }
 
               if (IsFolder(item.File) && getChildren)
