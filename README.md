@@ -3,7 +3,7 @@
 Drive Proxy is a Windows Service that streamlines communication with Google
 Drive. It is meant to facilitate the construction of tools that leverage Google
 Drive's cloud storage capacity without burdening the hard drive and network with
-unnecesary local copies. Drive Proxy handles authentication with Google Drive
+unnecessary local copies. Drive Proxy handles authentication with Google Drive
 and manages the cache where the needed files reside.
 
 It uses a simple protocol to communicate with client applications over a pipe.
