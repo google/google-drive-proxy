@@ -1,3 +1,6 @@
+# Important Notice Of Archive
+This project is no longer being maintained and therefor being moved to the archive.
+
 # About Drive Proxy
 
 Drive Proxy is a Windows Service that streamlines communication with Google
